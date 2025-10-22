@@ -214,9 +214,26 @@
                 border-radius: 4px;
             }
         }
+
+        .blog-section h2 {
+            color: var(--nord-accent);
+        }
+
+        .blog-section .card {
+            background-color: #3b4252;
+            border: 1px solid var(--nord-accent);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .blog-section .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+
     </style>
 </head>
 <body>
+
 <div class="sidebar" id="sidebar">
     <div class="profile">
         <img src="https://avatars.githubusercontent.com/u/118872999?v=4" alt="Profile Picture"/>
@@ -232,6 +249,7 @@
         <a href="#about" class="nav-link"><i class="bi bi-person me-2"></i>About</a>
         <a href="#skills" class="nav-link"><i class="bi bi-code-slash me-2"></i>Skills</a>
         <a href="#projects" class="nav-link"><i class="bi bi-kanban me-2"></i>Projects</a>
+        <a href="#blog" class="nav-link"><i class="bi bi-file-earmark-text me-2"></i>Blog</a>
     </nav>
 
     <div class="socials">
@@ -330,6 +348,15 @@
         </div>
     </section>
 
+    <section id="blog" class="blog-section mt-5">
+        <div class="container text-center"><h2>Blog</h2>
+        <div id="blogContainer" class="row g-4 mt-3"></div>
+        </div>
+
+
+    </section>
+
+
     <footer>
         <p>© <span id="year"></span> Andrew Irvine • Designed with ♡ and Nord.</p>
     </footer>
@@ -365,5 +392,32 @@
 
     sections.forEach((section) => observer.observe(section));
 </script>
+
+
+<script>
+    async function loadBlog() {
+        const res = await fetch("posts.json");
+        const posts = await res.json();
+        const container = document.getElementById("blogContainer");
+
+        container.innerHTML = posts
+            .map(
+                (post) => `
+                     <div class="col-md-6">
+                     <div class="card bg-dark text-light border-0 shadow-sm">
+                     <div class="card-body">
+                        <h5 class="card-title">${post.title}</h5>
+                        <small class="text-muted">${new Date(post.date).toDateString()}</small>
+                        <p class="card-text mt-2">${post.content}</p>
+                     </div>
+                    </div>
+                 </div>`
+            )
+            .join("");
+    }
+
+    loadBlog();
+</script>
+
 </body>
 </html>
