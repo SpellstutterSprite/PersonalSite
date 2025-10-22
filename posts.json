@@ -1,12 +1,12 @@
 [
   {
     "title": "Site Live!",
-    "date": "2025-10-21",
+    "date": "2025",
     "content": "Simple blog for now, I'll expand upon this for making longer form entries in the near future, but for now this will serve its function. Anyway, the site is up and running now, welcome!"
   },
   {
-    "title": " ",
-    "date": " ",
-    "content": " "
+    "title": "Potential Outages",
+    "date": "2025-10-21",
+    "content": "Periodically this site may be down as I'm making fairly sweeping changes semi-regularly, if you get 404'd then it may take up to an hour for the site to come back online."
   }
 ]
